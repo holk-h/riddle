@@ -33,6 +33,12 @@
                                         label="来输入答案吧"
                                         solo
                                         v-if="showtxt"
+                                        prepend-inner-icon="mdi-arrow-right"
+                                        clearable
+                                        :error="err"
+                                        :success="suc"
+                                        @change="change"
+                                        v-model="val"
                                 ></v-text-field>
                             </transition>
                         </v-card>
@@ -51,6 +57,7 @@
 </template>
 
 <script>
+    import Vue from "vue"
 
     export default {
         name: 'App',
@@ -60,11 +67,28 @@
         data: () => ({
             id: 1,
             show: false,
-            showtxt: false
+            showtxt: false,
+            err: false,
+            suc: false,
+            val: '',
         }),
         mounted() {
             this.show = true
             this.showtxt = true
+        },
+        methods:{
+            change(){
+                Vue.axios.get('https://holk.tech/',{
+                    params:{
+                        key: this.val
+                    }
+                }).then((res) => {
+                    if (res.data === 'true'){
+                        this.show = false
+
+                    }
+                })
+            }
         }
     };
 </script>
@@ -73,12 +97,13 @@
     .v-enter,
     .v-leave-to {
         opacity: 0;
-        transform: translateX(100px);
     }
 
-    .v-enter-active,
-    .v-leave-active {
+    .v-enter-active {
         transition: all 2.5s ease;
+    }
+    .v-leave-active {
+        transition: all 1s ease;
     }
 
 
