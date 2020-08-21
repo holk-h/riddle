@@ -14,14 +14,14 @@
                             <div>
                                 <v-tooltip bottom>
                                     <template v-slot:activator="{ on, attrs }">
-                                        <v-icon class="mr-1 mb-1" v-bind="attrs"
+                                        <v-icon class="mb-1" v-bind="attrs"
                                                 v-on="on">mdi-lightbulb-on-outline
                                         </v-icon>
                                     </template>
                                     <span>{{ hint }}</span>
                                 </v-tooltip>
                                 |
-                                <v-icon class="mr-1 mb-1" @click="overlay = !overlay">mdi-help-box</v-icon>
+                                <v-icon class="mb-1" @click="overlay = !overlay">mdi-help-box</v-icon>
                                 <v-overlay :value="overlay" style="text-align: center">
                                     <v-card light elevation="6">
                                         <v-card-title>欢迎你。<br>这是一个解谜网站<br>你需要通过各种方法，根据题目找到答案。
